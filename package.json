@@ -1,0 +1,31 @@
+{
+  "name": "vef2-2022-v1",
+  "version": "1.0.0",
+  "description": "Vefforritun 2 - Verkefni 1",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "build": "node main.js",
+    "test": "NODE_OPTIONS='--experimental-vm-modules' jest ./test/*.js",
+    "eslint": "eslint *.js **/*.js",
+    "stylelint": "stylelint styles.scss ./**/*.scss"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jongvnnar/vef2-2022-v1.git"
+  },
+  "author": "jgh12@hi.is",
+  "license": "ISC",
+  "homepage": "https://github.com/jongvnnar/vef2-2022-v1#readme",
+  "devDependencies": {
+    "eslint": "^8.7.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.25.4",
+    "jest": "^27.4.7",
+    "prettier": "^2.5.1",
+    "stylelint": "^14.2.0",
+    "stylelint-config-sass-guidelines": "^9.0.1",
+    "stylelint-config-standard": "^24.0.0"
+  }
+}
