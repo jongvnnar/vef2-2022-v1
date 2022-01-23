@@ -5,9 +5,9 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "build": "node main.js",
+    "build": "node ./src/build.js && cpy public dist",
     "test": "NODE_OPTIONS='--experimental-vm-modules' jest ./test/*.js",
-    "eslint": "eslint *.js **/*.js",
+    "eslint": "eslint **/*.js",
     "stylelint": "stylelint styles.scss ./**/*.scss"
   },
   "repository": {
@@ -27,5 +27,8 @@
     "stylelint": "^14.2.0",
     "stylelint-config-sass-guidelines": "^9.0.1",
     "stylelint-config-standard": "^24.0.0"
+  },
+  "dependencies": {
+    "cpy-cli": "^3.1.1"
   }
 }
