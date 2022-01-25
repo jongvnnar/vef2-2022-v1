@@ -1,6 +1,26 @@
 import { describe, expect, it } from '@jest/globals';
 import { icelandicParser, parse } from '../src/parser';
 
+describe('Icelandic number parser', () => {
+  it('parses IS thousands separator integers', () => {
+    const input = `100.000`;
+
+    const parsed = icelandicParser(input);
+    expect(parsed).toEqual('100000');
+  });
+  it('parses IS thousands separator floats', () => {
+    const input = `100.000,2`;
+
+    const parsed = icelandicParser(input);
+    expect(parsed).toEqual('100000.2');
+  });
+  it('parses Icelandic floats', () => {
+    const input = `12,5`;
+    const parsed = icelandicParser(input);
+    expect(parsed).toEqual('12.5');
+  });
+});
+
 describe('parser', () => {
   it('parses a single integer', () => {
     const input = `123456789`;
@@ -73,25 +93,5 @@ describe('parser', () => {
     const input = 'aa100';
     const parsed = parse(input);
     expect(parsed).toEqual([]);
-  });
-});
-
-describe('Icelandic number parser', () => {
-  it('parses IS thousands separator integers', () => {
-    const input = `100.000`;
-
-    const parsed = icelandicParser(input);
-    expect(parsed).toEqual('100000');
-  });
-  it('parses IS thousands separator floats', () => {
-    const input = `100.000,2`;
-
-    const parsed = icelandicParser(input);
-    expect(parsed).toEqual('100000.2');
-  });
-  it('parses Icelandic floats', () => {
-    const input = `12,5`;
-    const parsed = icelandicParser(input);
-    expect(parsed).toEqual('12.5');
   });
 });
