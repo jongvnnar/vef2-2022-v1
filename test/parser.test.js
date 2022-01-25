@@ -28,6 +28,12 @@ describe('parser', () => {
     const parsed = parse(input);
     expect(parsed).toEqual([123456789]);
   });
+  it('parses a negative integer', () => {
+    const input = `-123456789`;
+
+    const parsed = parse(input);
+    expect(parsed).toEqual([-123456789]);
+  });
   it('parses multiple integers', () => {
     const input = `1234
     5678`;
