@@ -77,3 +77,29 @@ export function sum(data) {
 export function range(data) {
   return max(data) - min(data);
 }
+
+/**
+ * Calculate numerical analysis of a dataset
+ * @param {Array<number>} data numerical data
+ * @returns {object} An object containing the following analysis
+ * * variance
+ * * max
+ * * mean
+ * * median
+ * * minimum
+ * * standard deviation
+ * * sum
+ * * range
+ */
+export function calculateAnalysis(data) {
+  return {
+    variance: variance(data),
+    max: max(data),
+    mean: mean(data),
+    median: median(data),
+    min: min(data),
+    stddev: stddev(data),
+    sum: sum(data),
+    range: range(data),
+  };
+}
