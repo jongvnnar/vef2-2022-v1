@@ -34,6 +34,16 @@ describe('parser', () => {
     const parsed = parse(input);
     expect(parsed).toEqual([-123456789]);
   });
+  it('parses scientific notation 1', () => {
+    const input = '1e2';
+    const parsed = parse(input);
+    expect(parsed).toEqual([100]);
+  });
+  it('parses scientific notation 2', () => {
+    const input = '1e-2';
+    const parsed = parse(input);
+    expect(parsed).toEqual([0.01]);
+  });
   it('parses multiple integers', () => {
     const input = `1234
     5678`;
