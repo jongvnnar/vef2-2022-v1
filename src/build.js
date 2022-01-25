@@ -6,9 +6,9 @@ const OUTPUT_DIR = './dist';
 /**
  * Check whether directory exists
  * @param {*} dir Directory to check
- * @returns Boolean promise indicating if directory exists
+ * @returns {Promise<Boolean>}Boolean promise indicating if directory exists
  */
-async function direxists(dir) {
+async function dirExists(dir) {
   try {
     const info = await stat(dir);
     return info.isDirectory();
@@ -20,7 +20,7 @@ async function direxists(dir) {
 async function main() {
   const files = await readdir(DATA_DIR);
 
-  if (!(await direxists(OUTPUT_DIR))) {
+  if (!(await dirExists(OUTPUT_DIR))) {
     await mkdir(OUTPUT_DIR);
   }
 
