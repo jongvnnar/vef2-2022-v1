@@ -35,7 +35,7 @@ export function mean(data) {
  */
 export function median(data) {
   const sortedData = [...data];
-  sortedData.sort();
+  sortedData.sort((a, b) => a - b);
   return data.length % 2 === 1
     ? sortedData[Math.floor(data.length / 2)]
     : (sortedData[Math.floor((data.length - 1) / 2)] +
