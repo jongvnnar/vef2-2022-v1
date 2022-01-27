@@ -1,23 +1,10 @@
-import { mkdir, readdir, stat, writeFile } from 'fs/promises';
+import { mkdir, readdir, writeFile } from 'fs/promises';
 import { join } from 'path';
+import { dirExists } from './lib/file.js';
 import { siteTemplate } from './make_html.js';
 
 const DATA_DIR = './data';
 const OUTPUT_DIR = './dist';
-
-/**
- * Check whether directory exists
- * @param {*} dir Directory to check
- * @returns {Promise<Boolean>}Boolean promise indicating if directory exists
- */
-async function dirExists(dir) {
-  try {
-    const info = await stat(dir);
-    return info.isDirectory();
-  } catch (e) {
-    return false;
-  }
-}
 
 async function main() {
   const files = await readdir(DATA_DIR);
