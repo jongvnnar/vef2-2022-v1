@@ -14,7 +14,7 @@ export function makeIndex() {
  * Takes HTML for a single blog entry and returns it with the site template.
  */
 export function siteTemplate(title, site, showBack = false) {
-  const back = showBack ? `<p><a href="/">Til baka</a></p>` : '';
+  const back = showBack ? '<p><a href="/">Til baka</a></p>' : '';
   return `
   <!doctype html>
   <html>

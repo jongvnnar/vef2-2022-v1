@@ -13,21 +13,21 @@ export function icelandicParser(number) {
  * @returns {Array<number>} array of valid numbers from data.
  */
 export function parse(input) {
-  //split input by line
+  // split input by line
   let content = input.split('\n');
 
-  //parse Icelandic values
+  // parse Icelandic values
   content = content.map(icelandicParser);
 
-  //Fancy map&filter using reduce.
+  // Fancy map&filter using reduce.
   const retVal = content.reduce((arr, str) => {
     // ignore comments and empty lines
     if (str.trim().startsWith('#') || str.trim().length === 0) return arr;
 
-    //parse number
+    // parse number
     const num = Number(str);
 
-    //if num is not NaN add it to array, which is returned at end.
+    // if num is not NaN add it to array, which is returned at end.
     if (!Number.isNaN(num)) arr.push(num);
 
     return arr;

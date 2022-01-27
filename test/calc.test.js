@@ -1,15 +1,15 @@
+import { describe, expect, it } from '@jest/globals';
 import {
-  variance,
+  calculateAnalysis,
   max,
   mean,
   median,
   min,
+  range,
   stddev,
   sum,
-  range,
-  calculateAnalysis,
+  variance,
 } from '../src/calc';
-import { describe, expect, it } from '@jest/globals';
 
 describe('variance', () => {
   it('works for known example', () => {

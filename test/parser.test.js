@@ -3,19 +3,19 @@ import { icelandicParser, parse } from '../src/parser';
 
 describe('Icelandic number parser', () => {
   it('parses IS thousands separator integers', () => {
-    const input = `100.000`;
+    const input = '100.000';
 
     const parsed = icelandicParser(input);
     expect(parsed).toEqual('100000');
   });
   it('parses IS thousands separator floats', () => {
-    const input = `100.000,2`;
+    const input = '100.000,2';
 
     const parsed = icelandicParser(input);
     expect(parsed).toEqual('100000.2');
   });
   it('parses Icelandic floats', () => {
-    const input = `12,5`;
+    const input = '12,5';
     const parsed = icelandicParser(input);
     expect(parsed).toEqual('12.5');
   });
@@ -23,13 +23,13 @@ describe('Icelandic number parser', () => {
 
 describe('parser', () => {
   it('parses a single integer', () => {
-    const input = `123456789`;
+    const input = '123456789';
 
     const parsed = parse(input);
     expect(parsed).toEqual([123456789]);
   });
   it('parses a negative integer', () => {
-    const input = `-123456789`;
+    const input = '-123456789';
 
     const parsed = parse(input);
     expect(parsed).toEqual([-123456789]);
@@ -51,19 +51,19 @@ describe('parser', () => {
     expect(parsed).toEqual([1234, 5678]);
   });
   it('parses IS thousands separator integers', () => {
-    const input = `100.000`;
+    const input = '100.000';
 
     const parsed = parse(input);
     expect(parsed).toEqual([100000]);
   });
   it('parses IS thousands separator floats', () => {
-    const input = `100.000,2`;
+    const input = '100.000,2';
 
     const parsed = parse(input);
     expect(parsed).toEqual([100000.2]);
   });
   it('parses Icelandic floats', () => {
-    const input = `12,5`;
+    const input = '12,5';
     const parsed = parse(input);
     expect(parsed).toEqual([12.5]);
   });

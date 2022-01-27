@@ -1,17 +1,4 @@
 /**
- * Calculate the variance of a dataset
- * @param {Array<number>} data numerical data
- * @returns {number} the variance of the dataset
- */
-export function variance(data) {
-  const avg = mean(data);
-  const variance = data.reduce(
-    (total, currentValue) => total + Math.pow(currentValue - avg, 2),
-    0
-  );
-  return variance / data.length;
-}
-/**
  * Calculate the max of a dataset
  * @param {Array<number>} data numerical data
  * @returns {number} the max of the dataset
@@ -19,6 +6,32 @@ export function variance(data) {
 export function max(data) {
   if (data.length === 0) return Number.NaN;
   return Math.max(...data);
+}
+/**
+ * Calculate the min of a dataset
+ * @param {Array<number>} data numerical data
+ * @returns {number} the min of the dataset
+ */
+export function min(data) {
+  if (data.length === 0) return Number.NaN;
+  return Math.min(...data);
+}
+/**
+ * Calculate the range of a dataset
+ * @param {Array<number>} data numerical data
+ * @returns {number} the range of the dataset
+ */
+export function range(data) {
+  return max(data) - min(data);
+}
+/**
+ * Calculate the sum of a dataset
+ * @param {Array<number>} data numerical data
+ * @returns {number} the sum of the dataset
+ */
+export function sum(data) {
+  if (data.length === 0) return Number.NaN;
+  return data.reduce((total, currentValue) => total + currentValue, 0);
 }
 /**
  * Calculate the mean of a dataset
@@ -42,14 +55,19 @@ export function median(data) {
         sortedData[Math.floor((data.length + 1) / 2)]) /
         2;
 }
+
 /**
- * Calculate the min of a dataset
+ * Calculate the variance of a dataset
  * @param {Array<number>} data numerical data
- * @returns {number} the min of the dataset
+ * @returns {number} the variance of the dataset
  */
-export function min(data) {
-  if (data.length === 0) return Number.NaN;
-  return Math.min(...data);
+export function variance(data) {
+  const avg = mean(data);
+  const retVal = data.reduce(
+    (total, currentValue) => total + (currentValue - avg) ** 2,
+    0
+  );
+  return retVal / data.length;
 }
 /**
  * Calculate the stddev of a dataset
@@ -58,24 +76,6 @@ export function min(data) {
  */
 export function stddev(data) {
   return Math.sqrt(variance(data));
-}
-
-/**
- * Calculate the sum of a dataset
- * @param {Array<number>} data numerical data
- * @returns {number} the sum of the dataset
- */
-export function sum(data) {
-  if (data.length === 0) return Number.NaN;
-  return data.reduce((total, currentValue) => total + currentValue, 0);
-}
-/**
- * Calculate the range of a dataset
- * @param {Array<number>} data numerical data
- * @returns {number} the range of the dataset
- */
-export function range(data) {
-  return max(data) - min(data);
 }
 
 /**

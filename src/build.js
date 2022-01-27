@@ -1,6 +1,7 @@
 import { mkdir, readdir, stat, writeFile } from 'fs/promises';
-import { siteTemplate } from './make_html.js';
 import { join } from 'path';
+import { siteTemplate } from './make_html.js';
+
 const DATA_DIR = './data';
 const OUTPUT_DIR = './dist';
 
@@ -24,7 +25,7 @@ async function main() {
   if (!(await dirExists(OUTPUT_DIR))) {
     await mkdir(OUTPUT_DIR);
   }
-  const index = siteTemplate();
+  const index = siteTemplate('');
   await writeFile(join(OUTPUT_DIR, 'index.html'), index, { flag: 'w+' });
   console.log('whatup');
 }
