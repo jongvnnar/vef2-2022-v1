@@ -1,4 +1,4 @@
-import {readFile, stat } from 'fs/promises';
+import { readFile, stat } from 'fs/promises';
 
 export async function readDataFile(path) {
   const info = await stat(path);
