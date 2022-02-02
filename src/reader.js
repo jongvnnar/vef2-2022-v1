@@ -3,7 +3,7 @@ import { readFile, stat } from 'fs/promises';
 export async function readDataFile(path) {
   const info = await stat(path);
   if (info.isDirectory() || !info.isFile()) {
-    continue;
+    throw new Error('Not a file');
   }
 
   const data = await readFile(path);

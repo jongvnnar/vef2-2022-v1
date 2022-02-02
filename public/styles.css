@@ -25,11 +25,12 @@ html {
   --color-text-secondary: #222;
   --color-link: #069;
   --color-border: #ccc;
+  --graph-background: #fbfbfb;
+  --card-background: #;
 
   /* Letur stillingar */
   --font-size: 16px;
   --font-family-base: 'Inter', Helvetica, Arial, sans-serif;
-  --font-family-heading: 'Playfair Display', Georgia, serif;
 
   /* Grid stillingar */
   --columns: 12;
@@ -44,25 +45,12 @@ html {
   src: url(./fonts/inter.ttf) format('woff');
 }
 
-@font-face {
-  font-family: 'Playfair Display';
-  font-style: normal;
-  font-display: swap;
-  src: url(./fonts/playfair-display.ttf) format('woff');
-}
-
 body {
   padding-top: var(--spacing);
 
   font-size: var(--font-size);
   line-height: 1.5;
   font-family: var(--font-family-base);
-}
-
-h1,
-h2,
-h3 {
-  font-family: var(--font-family-heading);
 }
 
 /*** Layout ***/
@@ -91,10 +79,56 @@ main {
   margin-bottom: var(--gutter);
 }
 
-.navbar {
+svg {
+  width: 100%;
+  object-fit: cover;
+  height: 150px;
+  background-color: var(--graph-background);
+}
+rect {
+  fill: blue;
+  opacity: 0.5;
+}
+
+.content {
   display: grid;
-  grid-template-rows: auto;
-  grid-template-columns: 100%;
-  background-color: blanchedalmond;
-  color: #fcfcfc;
+  gap: var(--gutter);
+  grid-template-columns: 1fr;
+}
+
+.content section {
+  border-radius: 2px;
+  border: 1px solid var(--color-border);
+  padding: 5px;
+  grid-column: span 1;
+  grid-row: span 3;
+  background-color: var(--card-background);
+}
+
+section a {
+  text-decoration: none;
+  color: var(--color-text);
+}
+
+section:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+section:hover svg {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+@media (min-width: 500px) and (max-width: 700px) {
+  .content {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (min-width: 700px) and (max-width: 1100px) {
+  .content {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media screen and (min-width: 1100px) {
+  .content {
+    grid-template-columns: repeat(4, 1fr);
+  }
 }

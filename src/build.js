@@ -1,11 +1,11 @@
 import { mkdir, readdir, writeFile } from 'fs/promises';
 import { join } from 'path';
-import { calculateAnalysis } from './calc';
-import { dirExists } from './lib/file';
-import { newFilename } from './lib/utils';
-import { siteTemplate } from './make_html';
-import { parse } from './parser';
-import { readDataFile } from './reader';
+import { calculateAnalysis } from './calc.js';
+import { dirExists } from './lib/file.js';
+import { newFilename } from './lib/utils.js';
+import { makeIndex, siteTemplate } from './make_html.js';
+import { parse } from './parser.js';
+import { readDataFile } from './reader.js';
 
 const DATA_DIR = './data';
 const OUTPUT_DIR = './dist';
@@ -16,17 +16,15 @@ const OUTPUT_DIR = './dist';
  * @param {string} data
  * @returns {object} analysis object
  *  * fileName
- *  * changedAt
  *  * analysis
  *  * parsedData
  *  * originalData
  */
 function getDataFileAnalysis(fileName, data) {
   const originalData = data.split('\n');
-  const changedAt = new Date();
   const parsedData = parse(data);
   const analysis = calculateAnalysis(parsedData);
-  return { fileName, changedAt, analysis, parsedData, originalData };
+  return { fileName, analysis, parsedData, originalData };
 }
 
 async function main() {
@@ -34,18 +32,18 @@ async function main() {
   if (!(await dirExists(OUTPUT_DIR))) {
     await mkdir(OUTPUT_DIR);
   }
+  const analyses = [];
   for (const file of files) {
-    const path = join(BLOG_DIR, file);
-    const data = await readDataFile(path);
-    const analysedFile = getDataFileAnalysis(file, data);
-    const parsed = parse(fileStr);
-    const filename = newFilename(parsed.metadata.slug, OUTPUT_DIR);
+    const path = join(DATA_DIR, file);
 
-    if (filename) {
-      await writeFile(filename, blog, { flag: 'w+' });
-      blogs.push(parsed.metadata);
-    } else {
-      console.warn('missing slug for md file', path);
+    try {
+      const data = await readDataFile(path);
+      const analysedFile = getDataFileAnalysis(file, data);
+      const filename = newFilename(file.split('.')[0], OUTPUT_DIR);
+      analyses.push(analysedFile);
+    } catch {
+      console.warn('Unable to read file');
+      continue;
     }
   }
 
@@ -55,7 +53,12 @@ async function main() {
    * senda analyses í makeIndex sem býr til lista yfir þau.
    *
    */
-  const index = siteTemplate('Gagnavinnsla');
+  const index = siteTemplate(
+    'Gagnavinnsla',
+    makeIndex(analyses),
+    false,
+    'Jón Gunnar Hannesson'
+  );
   await writeFile(join(OUTPUT_DIR, 'index.html'), index, { flag: 'w+' });
   console.log('whatup');
 }
