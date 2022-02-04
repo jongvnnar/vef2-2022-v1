@@ -144,7 +144,7 @@ describe('range', () => {
   });
 });
 
-describe('variance', () => {
+describe('full analysis', () => {
   it('works for known example', () => {
     const data = [2, 7, 3, 12, 9];
     const result = calculateAnalysis(data);
@@ -159,5 +159,19 @@ describe('variance', () => {
       range: 10,
     };
     expect(result).toStrictEqual(expectedResult);
+  });
+  it('works for empty array', () => {
+    const data = [];
+    const result = calculateAnalysis(data);
+    const expectedResult = {
+      variance: undefined,
+      max: undefined,
+      mean: undefined,
+      median: undefined,
+      min: undefined,
+      stddev: undefined,
+      sum: undefined,
+      range: undefined,
+    };
   });
 });

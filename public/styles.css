@@ -10,8 +10,8 @@ html {
 }
 /* og látum erfast á allt */
 *,
-*:before,
-*:after {
+*::before,
+*::after {
   box-sizing: inherit;
 }
 
@@ -39,24 +39,24 @@ html {
 }
 
 @font-face {
+  font-display: swap;
   font-family: 'Inter';
   font-style: normal;
-  font-display: swap;
-  src: url(inter.ttf) format('woff');
+  src: url('inter.ttf') format('woff');
 }
 @font-face {
+  font-display: swap;
   font-family: 'Consolas';
   font-style: normal;
-  font-display: swap;
-  src: url(Consolas.ttf) format('woff');
+  src: url('Consolas.ttf') format('woff');
 }
 
 body {
-  padding-top: var(--spacing);
+  font-family: var(--font-family-base);
 
   font-size: var(--font-size);
   line-height: 1.5;
-  font-family: var(--font-family-base);
+  padding-top: var(--spacing);
 }
 
 /*** Layout ***/
@@ -65,34 +65,41 @@ body {
 .wrapper {
   /* Útbýr bil á milli lóðréttra eininga */
   display: grid;
-  grid-template-rows: auto;
-  grid-template-columns: 100%;
   gap: var(--gutter);
+  grid-template-columns: 100%;
+  grid-template-rows: auto;
 
   margin: 0 auto;
-  width: calc(100% - (2 * var(--offset)));
   max-width: var(--max-width);
+  width: calc(100% - (2 * var(--offset)));
+}
+
+header {
+  background-color: rgba(255, 255, 255, 0.9);
+  position: sticky;
+  top: 0px;
 }
 
 main {
   /* Útbýr bil á milli lóðréttra eininga */
   display: grid;
-  grid-template-rows: auto;
-  grid-template-columns: 100%;
   gap: var(--gutter);
+  grid-template-columns: 100%;
+  grid-template-rows: auto;
 
   /* setjum margin neðst, annars endar efni skyndilega */
   margin-bottom: var(--gutter);
 }
 
 svg {
-  width: 100%;
-  object-fit: cover;
-  height: 150px;
   background-color: var(--graph-background);
+  height: 150px;
+  object-fit: cover;
+  width: 100%;
 }
+
 rect {
-  fill: blue;
+  fill: rgb(80, 80, 250);
   opacity: 0.5;
 }
 
@@ -103,23 +110,24 @@ rect {
 }
 
 section {
-  display: grid;
-  border-radius: 2px;
+  background-color: var(--card-background);
   border: 1px solid var(--color-border);
-  padding: 5px;
+  border-radius: 2px;
+  display: grid;
   grid-column: span 1;
   grid-row: span 3;
-  background-color: var(--card-background);
+  padding: 5px;
 }
 
-section a {
-  text-decoration: none;
+a {
   color: var(--color-text);
+  text-decoration: none;
 }
 
 .card:hover {
   background-color: rgba(0, 0, 0, 0.1);
 }
+
 .card:hover svg {
   background-color: rgba(0, 0, 0, 0.1);
 }
@@ -149,10 +157,10 @@ ul {
 }
 
 .data_wrapper {
+  background-color: #f0f0f9;
   display: flex;
   flex-direction: column;
   grid-column: span 2;
-  background-color: #f0f0f9;
 }
 
 .analysis_content {
@@ -169,7 +177,7 @@ ul {
 
 .data {
   background-color: #f7f7f9;
-  padding: 5px;
   flex: 1;
   font-family: var(--font-data);
+  padding: 5px;
 }

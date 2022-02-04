@@ -42,8 +42,10 @@ async function main() {
       const filename = newFilename(file.split('.')[0], OUTPUT_DIR);
       analyses.push(analysedFile);
       const site = siteTemplate(
-        'Gagnavinnsla: ' + analysedFile.fileName,
-        makeAnalysisPage(analysedFile)
+        'Gagnavinnsla',
+        makeAnalysisPage(analysedFile),
+        true,
+        analysedFile.fileName
       );
       writeFile(filename, site, { flag: 'w+' });
     } catch (e) {

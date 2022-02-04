@@ -46,7 +46,7 @@ export function makeIndex(analyses) {
     </div>`;
 }
 
-function showAnalysis({ analysis }) {
+export function showAnalysis({ analysis }) {
   return `<section>
   <h2><span>Tölulegar upplýsingar</span></h2>
   <ul>
@@ -62,12 +62,13 @@ function showAnalysis({ analysis }) {
 </section>`;
 }
 
-function showData({ title, data }) {
+export function showData({ title, data }) {
   return `<section class="data_wrapper">
   <h2>${title}</h2>
   <p class = "data">${data.length ? data.join('</br>') : 'Engin gögn'}</p>
 </section>`;
 }
+
 export function makeAnalysisPage({ analysis, parsedData, originalData }) {
   return `
   <div class="analysis_content">
@@ -79,15 +80,15 @@ export function makeAnalysisPage({ analysis, parsedData, originalData }) {
   </div>`;
 }
 /**
- * Takes HTML for a single blog entry and returns it with the site template.
+ * Takes HTML for a single site and returns it with the site template.
  */
 export function siteTemplate(title, site, showBack = false, subtitle = '') {
-  const back = showBack ? '<p><a href="/">Til baka</a></p>' : '';
+  const back = showBack ? '<p><a href="/">← Til baka</a></p>' : '';
   return `
   <!doctype html>
   <html>
     <head>
-      <title>${title ?? ''}</title>
+      <title>${title ?? 'Óþekkt síða'}</title>
       <link rel="stylesheet" href="./styles.css">
     </head>
     <body>
@@ -95,6 +96,7 @@ export function siteTemplate(title, site, showBack = false, subtitle = '') {
     <header>
       <h1>${title ?? 'Óþekkt síða'}</h1>
       <h3>${subtitle}</h3>
+${back}
     </header>
     <main>
     ${site ?? ''}
