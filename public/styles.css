@@ -31,7 +31,7 @@ html {
   /* Letur stillingar */
   --font-size: 16px;
   --font-family-base: 'Inter', Helvetica, Arial, sans-serif;
-
+  --font-data: 'Consolas', Helvetica, Arial, sans-serif;
   /* Grid stillingar */
   --columns: 12;
   --gutter: 30px;
@@ -43,6 +43,12 @@ html {
   font-style: normal;
   font-display: swap;
   src: url(./fonts/inter.ttf) format('woff');
+}
+@font-face {
+  font-family: 'Consolas';
+  font-style: normal;
+  font-display: swap;
+  src: url(./fonts/Consolas.ttf) format('woff');
 }
 
 body {
@@ -96,7 +102,8 @@ rect {
   grid-template-columns: 1fr;
 }
 
-.content section {
+section {
+  display: grid;
   border-radius: 2px;
   border: 1px solid var(--color-border);
   padding: 5px;
@@ -110,10 +117,10 @@ section a {
   color: var(--color-text);
 }
 
-section:hover {
+.card:hover {
   background-color: rgba(0, 0, 0, 0.1);
 }
-section:hover svg {
+.card:hover svg {
   background-color: rgba(0, 0, 0, 0.1);
 }
 
@@ -131,4 +138,38 @@ section:hover svg {
   .content {
     grid-template-columns: repeat(4, 1fr);
   }
+}
+
+ul {
+  list-style: none;
+}
+
+.analysis_wrapper {
+  grid-column: span 2;
+}
+
+.data_wrapper {
+  display: flex;
+  flex-direction: column;
+  grid-column: span 2;
+  background-color: #f0f0f9;
+}
+
+.analysis_content {
+  display: grid;
+  gap: var(--gutter);
+  grid-template-columns: repeat(2, 1fr);
+}
+
+@media (min-width: 700px) {
+  .data_wrapper {
+    grid-column: span 1;
+  }
+}
+
+.data {
+  background-color: #f7f7f9;
+  padding: 5px;
+  flex: 1;
+  font-family: var(--font-data);
 }

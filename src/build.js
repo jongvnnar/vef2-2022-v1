@@ -3,7 +3,7 @@ import { join } from 'path';
 import { calculateAnalysis } from './calc.js';
 import { dirExists } from './lib/file.js';
 import { newFilename } from './lib/utils.js';
-import { makeIndex, siteTemplate } from './make_html.js';
+import { makeAnalysisPage, makeIndex, siteTemplate } from './make_html.js';
 import { parse } from './parser.js';
 import { readDataFile } from './reader.js';
 
@@ -41,18 +41,16 @@ async function main() {
       const analysedFile = getDataFileAnalysis(file, data);
       const filename = newFilename(file.split('.')[0], OUTPUT_DIR);
       analyses.push(analysedFile);
-    } catch {
-      console.warn('Unable to read file');
+      const site = siteTemplate(
+        'Gagnavinnsla: ' + analysedFile.fileName,
+        makeAnalysisPage(analysedFile)
+      );
+      writeFile(filename, site, { flag: 'w+' });
+    } catch (e) {
+      console.warn(e.message);
       continue;
     }
   }
-
-  /**
-   * búa til filename, búa til skrá fyrir file. Skrifa file í output dir.
-   * pusha hverju filename í blogs. -> breyta blogs í analyses,
-   * senda analyses í makeIndex sem býr til lista yfir þau.
-   *
-   */
   const index = siteTemplate(
     'Gagnavinnsla',
     makeIndex(analyses),
@@ -60,7 +58,7 @@ async function main() {
     'Jón Gunnar Hannesson'
   );
   await writeFile(join(OUTPUT_DIR, 'index.html'), index, { flag: 'w+' });
-  console.log('whatup');
+  console.log(calculateAnalysis([0]));
 }
 
 main().catch((err) => console.error(err));
