@@ -4,6 +4,29 @@
 ## ATH:
 Verkefnið er hýst á [netlify](https://peaceful-volhard-bab9e3.netlify.app/).
 
+Hægt er að byggja verkefnið með 
+```
+npm run build
+```
+og linta með
+```
+npm run lint
+```
+eða
+```
+npm run lint:eslint
+npm run lint:stylelint
+```
+
+Prófanir má framkvæma með 
+```
+npm run test
+```
+og skoða coverage með 
+```
+npm run test -- --coverage
+```
+
 ----------
 
 Þér er falið það verkefni að útbúa gagnavinnslutól sem tekur við tölulegum gögnum, keyrir tölfræðilega vinnslu á þau og útbýr vef sem skilar niðurstöðum.
