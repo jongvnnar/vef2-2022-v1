@@ -42,13 +42,13 @@ html {
   font-family: 'Inter';
   font-style: normal;
   font-display: swap;
-  src: url(./fonts/inter.ttf) format('woff');
+  src: url(inter.ttf) format('woff');
 }
 @font-face {
   font-family: 'Consolas';
   font-style: normal;
   font-display: swap;
-  src: url(./fonts/Consolas.ttf) format('woff');
+  src: url(Consolas.ttf) format('woff');
 }
 
 body {

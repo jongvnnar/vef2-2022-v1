@@ -88,7 +88,7 @@ export function siteTemplate(title, site, showBack = false, subtitle = '') {
   <html>
     <head>
       <title>${title ?? ''}</title>
-      <link rel="stylesheet" href="../public/styles.css">
+      <link rel="stylesheet" href="./styles.css">
     </head>
     <body>
     <div class="wrapper">
