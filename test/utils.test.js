@@ -5,6 +5,7 @@ import {
   newFilename,
   sortFilenames,
 } from '../src/lib/utils';
+
 const BASEPATH = '../uhm';
 const SLUG = 'file';
 describe('newFilename', () => {

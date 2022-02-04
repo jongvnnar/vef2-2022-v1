@@ -16,7 +16,7 @@ export function makeBarGraph(data) {
   const width = (1 / data.length) * 100;
   const maximum = max(data);
   const rects = data.map((value, index) => {
-    if (value < 0) return;
+    if (value < 0) return '';
     const x = (index / data.length) * 100;
     const height = (BARGRAPH_HEIGHT / maximum) * value;
     const y = BARGRAPH_HEIGHT - height;
@@ -31,12 +31,12 @@ export function makeBarGraph(data) {
 </svg>`;
 }
 
-export function makeCard(title = 'Unknown dataset', data, link = '#') {
+export function makeCard(title, data, link = '#') {
   return `
   <section class="card">
   <a href = ${link}>
   <div>
-  <h2>${title}</h2>
+  <h2>${title || 'Unknown dataset'}</h2>
   ${makeBarGraph(data)}
   </div>
   </a>

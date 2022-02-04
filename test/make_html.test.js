@@ -50,32 +50,32 @@ describe('Show data files', () => {
   it('handles success case', () => {
     const data = [12, 5, 4, 3];
     const title = 'Data';
-    expect(showData({ title, data })).toEqual(`<section class=\"data_wrapper\">
+    expect(showData({ title, data })).toEqual(`<section class="data_wrapper">
   <h2>Data</h2>
-  <p class = \"data\">12</br>5</br>4</br>3</p>
+  <p class = "data">12</br>5</br>4</br>3</p>
 </section>`);
   });
   it('handles no data', () => {
     const data = [];
     const title = 'Data';
-    expect(showData({ title, data })).toEqual(`<section class=\"data_wrapper\">
+    expect(showData({ title, data })).toEqual(`<section class="data_wrapper">
   <h2>Data</h2>
-  <p class = \"data\">Engin gögn</p>
+  <p class = "data">Engin gögn</p>
 </section>`);
   });
 });
 
 describe('Site template', () => {
-  describe('handles success case with no back button', () => {
+  it('handles success case with no back button', () => {
     expect(siteTemplate('title', 'site', false, 'subtitle')).toEqual(`
   <!doctype html>
   <html>
     <head>
       <title>title</title>
-      <link rel=\"stylesheet\" href=\"./styles.css\">
+      <link rel="stylesheet" href="./styles.css">
     </head>
     <body>
-    <div class=\"wrapper\">
+    <div class="wrapper">
     <header>
       <h1>title</h1>
       <h3>subtitle</h3>
@@ -94,10 +94,10 @@ describe('Site template', () => {
   <html>
     <head>
       <title>title</title>
-      <link rel=\"stylesheet\" href=\"./styles.css\">
+      <link rel="stylesheet" href="./styles.css">
     </head>
     <body>
-    <div class=\"wrapper\">
+    <div class="wrapper">
     <header>
       <h1>title</h1>
       <h3>subtitle</h3>
@@ -116,10 +116,10 @@ describe('Site template', () => {
   <html>
     <head>
       <title>title</title>
-      <link rel=\"stylesheet\" href=\"./styles.css\">
+      <link rel="stylesheet" href="./styles.css">
     </head>
     <body>
-    <div class=\"wrapper\">
+    <div class="wrapper">
     <header>
       <h1>title</h1>
       <h3></h3>

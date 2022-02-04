@@ -1,6 +1,7 @@
-import { describe, it } from '@jest/globals';
+import { describe, expect, it } from '@jest/globals';
 import { join } from 'path';
 import { readDataFile } from '../src/reader';
+
 const TESTDIR = './test/testfiles';
 describe('reader', () => {
   it('reads regular file', async () => {

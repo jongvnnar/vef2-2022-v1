@@ -35,7 +35,6 @@ async function main() {
       writeFile(filename, site, { flag: 'w+' });
     } catch (e) {
       console.warn(e.message);
-      continue;
     }
   }
   const index = siteTemplate(

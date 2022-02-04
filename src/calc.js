@@ -93,13 +93,13 @@ export function stddev(data) {
  */
 export function calculateAnalysis(data) {
   return {
-    variance: isNaN(variance(data)) ? undefined : variance(data),
-    max: isNaN(max(data)) ? undefined : max(data),
-    mean: isNaN(mean(data)) ? undefined : mean(data),
-    median: isNaN(median(data)) ? undefined : median(data),
-    min: isNaN(min(data)) ? undefined : min(data),
-    stddev: isNaN(stddev(data)) ? undefined : stddev(data),
-    sum: isNaN(sum(data)) ? undefined : sum(data),
-    range: isNaN(range(data)) ? undefined : range(data),
+    variance: Number.isNaN(variance(data)) ? undefined : variance(data),
+    max: Number.isNaN(max(data)) ? undefined : max(data),
+    mean: Number.isNaN(mean(data)) ? undefined : mean(data),
+    median: Number.isNaN(median(data)) ? undefined : median(data),
+    min: Number.isNaN(min(data)) ? undefined : min(data),
+    stddev: Number.isNaN(stddev(data)) ? undefined : stddev(data),
+    sum: Number.isNaN(sum(data)) ? undefined : sum(data),
+    range: Number.isNaN(range(data)) ? undefined : range(data),
   };
 }

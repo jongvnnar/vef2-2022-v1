@@ -173,5 +173,6 @@ describe('full analysis', () => {
       sum: undefined,
       range: undefined,
     };
+    expect(result).toEqual(expectedResult);
   });
 });
