@@ -1,5 +1,6 @@
 import { join } from 'path';
-
+import { calculateAnalysis } from '../calc.js';
+import { parse } from '../parser.js';
 export function newFilename(slug, basePath = '') {
   if (typeof slug !== 'string') {
     return null;
@@ -20,4 +21,21 @@ export function sortFilenames(array) {
     const num2 = parseInt(filename2.split('.')[0]);
     return num1 - num2;
   });
+}
+
+/**
+ *
+ * @param {string} fileName
+ * @param {string} data
+ * @returns {object} analysis object
+ *  * fileName
+ *  * analysis
+ *  * parsedData
+ *  * originalData
+ */
+export function getDataFileAnalysis(fileName, data) {
+  const originalData = data.split('\n');
+  const parsedData = parse(data);
+  const analysis = calculateAnalysis(parsedData);
+  return { fileName, analysis, parsedData, originalData };
 }

@@ -2,19 +2,28 @@ import { max } from './calc.js';
 import { newFilename } from './lib/utils.js';
 
 const BARGRAPH_HEIGHT = 150;
-function makeBarGraph(data) {
-  if (data.length === 0) {
+/**
+ * Creates very simple bargraph ignoring negative values
+ * I allow for negative values to be ignored since these graphs weren't really supposed to be in the
+ * project anyways
+ * @param {Array<number>} data
+ * @returns svg containing a bargraph
+ */
+export function makeBarGraph(data) {
+  if (data.length === 0 || !data) {
     return '<svg></svg>';
   }
   const width = (1 / data.length) * 100;
   const maximum = max(data);
-
   const rects = data.map((value, index) => {
+    if (value < 0) return;
     const x = (index / data.length) * 100;
     const height = (BARGRAPH_HEIGHT / maximum) * value;
     const y = BARGRAPH_HEIGHT - height;
 
-    return `<rect x="${x}%" y="${y}" width="${width}%" height="${height}"/>`;
+    return `<rect x="${x}%" y="${y || 0}" width="${width}%" height="${
+      height || 0
+    }"/>`;
   });
 
   return `<svg>

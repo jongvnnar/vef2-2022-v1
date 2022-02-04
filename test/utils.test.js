@@ -1,6 +1,10 @@
 import { describe, expect, it } from '@jest/globals';
 import { join } from 'path';
-import { newFilename, sortFilenames } from '../src/lib/utils';
+import {
+  getDataFileAnalysis,
+  newFilename,
+  sortFilenames,
+} from '../src/lib/utils';
 const BASEPATH = '../uhm';
 const SLUG = 'file';
 describe('newFilename', () => {
@@ -29,5 +33,32 @@ describe('Filename sorter', () => {
   });
   it('sorts empty array', () => {
     expect(sortFilenames([])).toEqual([]);
+  });
+});
+
+describe('analysis object maker', () => {
+  it('handles regular case', () => {
+    const name = 'name';
+    const data = `1
+    2
+    3
+    4
+    5`;
+    const result = getDataFileAnalysis(name, data);
+    expect(result).toEqual({
+      analysis: {
+        max: 5,
+        mean: 3,
+        median: 3,
+        min: 1,
+        range: 4,
+        stddev: 1.4142135623730951,
+        sum: 15,
+        variance: 2,
+      },
+      fileName: 'name',
+      originalData: data.split('\n'),
+      parsedData: [1, 2, 3, 4, 5],
+    });
   });
 });
